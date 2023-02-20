@@ -1,7 +1,18 @@
 import "./App.css";
+import Favorites from "./components/Favorites";
+import Search from "./components/Search";
+import Meals from "./components/Meals";
+import Modal from "./components/Modal";
 
 function App() {
-  return <h1>MealsApp</h1>;
+  return (
+    <main>
+      {/* <Search />
+      <Favorites /> */}
+      <Meals />
+      {/* <Modal /> */}
+    </main>
+  );
 }
 
 export default App;
