@@ -1,13 +1,41 @@
 import { useGlobalContext } from "../context";
+import { BsHandThumbsUp } from "react-icons/bs";
 
 export default function Meals() {
-  const { meals } = useGlobalContext();
+  const { loading, meals } = useGlobalContext();
+
+  if (loading) {
+    return (
+      <section className="section">
+        <h1>Loading...</h1>
+      </section>
+    );
+  }
+
+  if (meals.length < 1) {
+    return (
+      <section className="section">
+        <h1>No meals matched your search criteria. Please try again!</h1>
+      </section>
+    );
+  }
 
   return (
-    <section>
+    <section className="section-center">
       {meals.map((singleMeal) => {
-        console.log(singleMeal);
-        return <h4>singleMeal</h4>;
+        const { idMeal, strMeal: title, strMealThumb: image } = singleMeal;
+
+        return (
+          <article key={idMeal} className="single-meal">
+            <img src={image} className="img" />
+            <footer>
+              <h5>{title}</h5>
+              <button className="like-btn">
+                <BsHandThumbsUp />
+              </button>
+            </footer>
+          </article>
+        );
       })}
     </section>
   );
